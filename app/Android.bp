@@ -1,39 +1,11 @@
-//
 // SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-FileCopyrightText: 2026 The nasgorOS Project
 // SPDX-License-Identifier: Apache-2.0
-//
 
-android_app {
+// The inherited Lineage product still requests this module by name. Satisfy
+// that reference without building or installing an APK, permissions, resources,
+// receivers, or setup activities. Do not override AOSP Provision: vanilla
+// builds need it, and the GApps installer replaces it when adding Google setup.
+phony {
     name: "LineageSetupWizard",
-
-    srcs: ["src/main/java/**/*.kt"],
-    resource_dirs: ["src/main/res"],
-    manifest: "src/main/AndroidManifest.xml",
-
-    certificate: "platform",
-    privileged: true,
-    privapp_allowlist: "org.lineageos.setupwizard.xml",
-    system_ext_specific: true,
-    platform_apis: true,
-
-    // nasgorOS ships AOSP Provision as the first-boot provisioning app, so do
-    // not override it (LineageSetupWizard itself is kept out of the product).
-
-    optimize: {
-        proguard_flags_files: ["proguard.flags"],
-    },
-
-    static_libs: [
-        "androidx.activity_activity",
-        "androidx.leanback_leanback",
-        "SettingsLib",
-        "setupcompat",
-        "setupdesign",
-        "setupdesign-lottie-animation-view",
-        "SystemUISharedLib",
-        "zxing-core",
-        "org.lineageos.platform.internal",
-    ],
-
-    libs: ["telephony-common"],
 }
