@@ -16,7 +16,8 @@ android_app {
     system_ext_specific: true,
     platform_apis: true,
 
-    overrides: ["Provision"],
+    // nasgorOS ships AOSP Provision as the first-boot provisioning app, so do
+    // not override it (LineageSetupWizard itself is kept out of the product).
 
     optimize: {
         proguard_flags_files: ["proguard.flags"],
